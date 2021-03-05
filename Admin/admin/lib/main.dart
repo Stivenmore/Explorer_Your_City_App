@@ -1,4 +1,4 @@
-import 'package:explorer_your_city/src/Control.dart';
+import 'package:admin/src/Pages/Home/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -9,15 +9,15 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Explorer Your City',
-        theme: (ThemeData(
-            primaryColor: Colors.green, backgroundColor: Colors.white)),
-        home: Control());
+      debugShowCheckedModeBanner: false,
+      title: 'Panel de control',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
+      home: Home()
+    );
   }
 }
-
