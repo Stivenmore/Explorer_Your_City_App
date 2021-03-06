@@ -71,87 +71,89 @@ class _LoginandRegisterState extends State<LoginandRegister> {
                               child: Container(
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: Text(
-                                            'Nueva\n Cuenta',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w700,
-                                                color: kColorBlack),
-                                          )),
-                                          GestureDetector(
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: Colors.grey[200],
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          16)),
-                                              height: 50,
-                                              width: 50,
-                                              child: Icon(
-                                                Icons.camera_alt,
-                                                color: kColorGray,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                                child: Text(
+                                              'Nueva\n Cuenta',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: kColorBlack),
+                                            )),
+                                            GestureDetector(
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey[200],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            16)),
+                                                height: 50,
+                                                width: 50,
+                                                child: Icon(
+                                                  Icons.camera_alt,
+                                                  color: kColorGray,
+                                                ),
                                               ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      TextFormDefauld(
-                                        valor: (value) {
-                                          setState(() {
-                                            correo = value;
-                                          });
-                                        },
-                                        tipo: 'Correo',
-                                        obscurecer: false,
-                                        helper: 'Example@example.com',
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      TextFormDefauld(
-                                        valor: (value) {
-                                          password = value;
-                                        },
-                                        tipo: 'Contraseña',
-                                        obscurecer: true,
-                                        helper: '123*****',
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      TextFormDefauld(
-                                        valor: (value) {
-                                          nombre = value;
-                                        },
-                                        tipo: 'Nombre',
-                                        obscurecer: false,
-                                        helper: 'Kristian Y...',
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      BottomShowmodel(
-                                        texto: 'Registro',
-                                        textColor: kColorWhite,
-                                        containerColor: Colors.green,
-                                        ir: () async {
-                                          await _service.createUser(
-                                              correo, password, nombre);
-                                          Navigator.pop(context);
-                                        },
-                                      )
-                                    ],
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        TextFormDefauld(
+                                          valor: (value) {
+                                            setState(() {
+                                              correo = value;
+                                            });
+                                          },
+                                          tipo: 'Correo',
+                                          obscurecer: false,
+                                          helper: 'Example@example.com',
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        TextFormDefauld(
+                                          valor: (value) {
+                                            password = value;
+                                          },
+                                          tipo: 'Contraseña',
+                                          obscurecer: true,
+                                          helper: '123*****',
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        TextFormDefauld(
+                                          valor: (value) {
+                                            nombre = value;
+                                          },
+                                          tipo: 'Nombre',
+                                          obscurecer: false,
+                                          helper: 'Kristian Y...',
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        BottomShowmodel(
+                                          texto: 'Registro',
+                                          textColor: kColorWhite,
+                                          containerColor: Colors.green,
+                                          ir: () async {
+                                            await _service.createUser(
+                                                correo, password, nombre);
+                                            Navigator.pop(context);
+                                          },
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -176,75 +178,77 @@ class _LoginandRegisterState extends State<LoginandRegister> {
                                 key: _formKey,
                                 child: Padding(
                                   padding: const EdgeInsets.all(17.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Bienvenido\n Explora tu Ciudad',
-                                        style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w700,
-                                            color: kColorBlack),
-                                      ),
-                                      SizedBox(
-                                        height: 40,
-                                      ),
-                                      TextFormDefauld(
-                                        valor: (value) {
-                                          setState(() {
-                                            correo = value;
-                                          });
-                                        },
-                                        tipo: 'Correo',
-                                        obscurecer: false,
-                                        helper: 'Example@example.com',
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      TextFormDefauld(
-                                        valor: (value) {
-                                          setState(() {
-                                            password = value;
-                                          });
-                                        },
-                                        tipo: 'Contraseña',
-                                        obscurecer: true,
-                                        helper: '123******',
-                                      ),
-                                      SizedBox(
-                                        height: 40,
-                                      ),
-                                      BottomShowmodel(
-                                        texto: 'Iniciar Sesion',
-                                        textColor: Colors.green,
-                                        containerColor: kColorWhite,
-                                        ir: () async {
-                                          final isError = await _service.singIn(
-                                              correo, password);
-                                          if (isError==true) {
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                        "Ocurrio un Error!"),
-                                                    content: Text(
-                                                        "Verifica la informacion que ingresaste"),
-                                                  );
-                                                });
-                                          } else {
-                                            Navigator.pop(context);
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Home();
-                                            }));
-                                          }
-                                        },
-                                      )
-                                    ],
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Bienvenido\n Explora tu Ciudad',
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w700,
+                                              color: kColorBlack),
+                                        ),
+                                        SizedBox(
+                                          height: 40,
+                                        ),
+                                        TextFormDefauld(
+                                          valor: (value) {
+                                            setState(() {
+                                              correo = value;
+                                            });
+                                          },
+                                          tipo: 'Correo',
+                                          obscurecer: false,
+                                          helper: 'Example@example.com',
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        TextFormDefauld(
+                                          valor: (value) {
+                                            setState(() {
+                                              password = value;
+                                            });
+                                          },
+                                          tipo: 'Contraseña',
+                                          obscurecer: true,
+                                          helper: '123******',
+                                        ),
+                                        SizedBox(
+                                          height: 40,
+                                        ),
+                                        BottomShowmodel(
+                                          texto: 'Iniciar Sesion',
+                                          textColor: Colors.green,
+                                          containerColor: kColorWhite,
+                                          ir: () async {
+                                            final isError = await _service.singIn(
+                                                correo, password);
+                                            if (isError==true) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          "Ocurrio un Error!"),
+                                                      content: Text(
+                                                          "Verifica la informacion que ingresaste"),
+                                                    );
+                                                  });
+                                            } else {
+                                              Navigator.pop(context);
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) {
+                                                return Home();
+                                              }));
+                                            }
+                                          },
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

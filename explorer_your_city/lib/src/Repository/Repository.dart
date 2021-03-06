@@ -36,11 +36,17 @@ class Services {
     }
   }
 
-  Future<void> getDataUser(Function (DocumentSnapshot userDocument) onState) async{
-    _firebaseAuth.authStateChanges().listen((event)async{
-      final response = await _firestore.collection('Users').doc(event.uid).get();
+  Future<void> getDataUser(
+      Function(DocumentSnapshot userDocument) onState) async {
+    _firebaseAuth.authStateChanges().listen((event) async {
+      final response =
+          await _firestore.collection('Users').doc(event.uid).get();
       onState(response);
     });
+  }
+
+  Future getSearchData(String tipo) async {
+    return await _firestore.collection(tipo).get();
   }
 
   Future singOut() async {

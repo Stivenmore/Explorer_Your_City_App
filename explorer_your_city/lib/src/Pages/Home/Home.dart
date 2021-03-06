@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:explorer_your_city/src/Pages/Autenticate/Login&Register.dart';
 import 'package:explorer_your_city/src/Pages/Home/Search.dart';
 import 'package:explorer_your_city/src/Repository/Repository.dart';
 import 'package:explorer_your_city/src/Utils/Colors.dart';
@@ -13,12 +16,16 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-
 class _HomeState extends State<Home> {
   Services _services = Services();
   bool isLoading = true;
   DocumentSnapshot data;
-  int _selectIndex = 0;
+  QuerySnapshot _datos;
+  int _selectIndex;
+  DocumentSnapshot search;
+  String tipo;
+
+  bool isError = true;
 
   @override
   void initState() {
@@ -80,7 +87,7 @@ class _HomeState extends State<Home> {
                         ),
                         onPressed: () {
                           _services.singOut();
-                          Navigator.pop(context);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginandRegister()));
                         }),
                     CircleAvatar(
                       backgroundColor: Colors.green,
@@ -110,13 +117,29 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: kPaddinDefaulHorizontal - 5),
                         child: GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             setState(() {
                               _selectIndex = index;
                               switch (index) {
                                 case 0:
-                                  return '';
+                                  tipo = 'Gastronomia';
+                                  break;
+                                case 1:
+                                  tipo = 'Salud';
+                                  break;
+                                case 2:
+                                  tipo = 'Recreacion';
+                                  break;
+                                case 3:
+                                  tipo = 'Deporte';
+                                  break;
+                                default:
+                                  tipo = 'Gastronomia';
+                                  break;
                               }
+                            });
+                            _services.getSearchData(tipo).then((response){
+                              setState(() => _datos = response);
                             });
                           },
                           child: Column(
@@ -146,10 +169,20 @@ class _HomeState extends State<Home> {
                     },
                   ),
                 ),
-                Container(
-                    width: size.width,
-                    height: size.height,
-                    child: Search(),)
+                SizedBox(
+                  width: size.width,
+                  height: size.height,
+                  child: _datos == null? 
+                  Container(
+                    width: 300,
+                    height: 300,
+                  child: Column(
+                    children: [
+                        CircularProgressIndicator(),
+                        SizedBox(height: 20,),
+                        Text('Estamos esperando que tomes una opcion')
+                    ],)) :Search(dato: _datos),
+                )
               ],
             ),
           ),
